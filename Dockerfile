@@ -19,6 +19,8 @@ RUN wget https://phar.phpunit.de/phpunit.phar
 RUN chmod +x phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit
 
 # Install NPM and scommon global packages
+# Install Node 
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN npm install -g n && n lts && npm install -g npm yarn gulp
 
 # At some time in the future, we may cache NPM packages, see http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/

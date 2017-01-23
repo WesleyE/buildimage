@@ -3,7 +3,7 @@ MAINTAINER Wesley Elfring <wesley@combustible.nl>
 
 # Update packages and install Git, the Virtual Framebuffer and Zip (needed for Composer to run)
 RUN apt-get update -yqq
-RUN apt-get install git xvfb unzip -yqq
+RUN apt-get install git xvfb unzip wget -yqq
 
 # Install MySQL and Xdebug (needed for phpunit code coverage)
 RUN docker-php-ext-install pdo_mysql

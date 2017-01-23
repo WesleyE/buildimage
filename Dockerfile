@@ -1,7 +1,7 @@
 FROM php:latest
 MAINTAINER Wesley Elfring <wesley@combustible.nl>
 
-# Update packages and install Git and Zip (needed for Composer to run)
+# Update packages and install Git, the Virtual Framebuffer and Zip (needed for Composer to run)
 RUN apt-get update -yqq
 RUN apt-get install git xvfb unzip -yqq
 
@@ -15,6 +15,12 @@ RUN curl -sS https://getcomposer.org/installer | php && composer global require 
 
 # Install NPM and scommon global packages
 RUN npm install -g n && n lts && npm install -g npm yarn gulp
+
+# At some time in the future, we may cache NPM packages, see http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/
+# We don't need this with Shippable's Cache
+# ADD package.json /tmp/package.json
+# RUN cd /tmp && npm install
+# RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
 
 # Cleanup
 RUN apt-get clean

@@ -13,6 +13,10 @@ RUN docker-php-ext-enable xdebug
 # Install Composer and Prestissimo
 RUN curl -sS https://getcomposer.org/installer | php && composer global require "hirak/prestissimo:^0.3"
 
+# Install PHPUnit
+RUN wget https://phar.phpunit.de/phpunit.phar
+RUN chmod +x phpunit.phar && sudo mv phpunit.phar /usr/local/bin/phpunit
+
 # Install NPM and scommon global packages
 RUN npm install -g n && n lts && npm install -g npm yarn gulp
 

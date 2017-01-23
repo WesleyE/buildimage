@@ -11,7 +11,8 @@ RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
 
 # Install Composer and Prestissimo
-RUN curl -sS https://getcomposer.org/installer | php && composer global require "hirak/prestissimo:^0.3"
+RUN curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer global require "hirak/prestissimo:^0.3"
 
 # Install PHPUnit
 RUN wget https://phar.phpunit.de/phpunit.phar
